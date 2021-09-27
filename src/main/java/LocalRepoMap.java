@@ -3,6 +3,7 @@ package src.main.java;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class LocalRepoMap {
 
@@ -19,16 +20,14 @@ public class LocalRepoMap {
         addToPhoneBook(name, phoneNumber);
     }
 
-    public static void deletePhoneBook(String name) {
-        map.remove(name);
-    }
+    public static void deletePhoneBook(String name) {map.remove(name);}
 
-    public static void findByName(String name) {
-        System.out.println(map.get(name));
+    public static void findByName(String name) {System.out.println(map.get(name));
     }
 
     public static void show() {
-        System.out.println(map);
+        Map<String, String> swapped = map.entrySet().stream().collect(Collectors.toMap(Map.Entry::getValue, Map.Entry::getKey));
+        System.out.println(swapped);
     }
 
     public static void findByPhoneNumber(String phoneNumber) {
